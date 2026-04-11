@@ -52,7 +52,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 padding: const EdgeInsets.only(top: 10, right: 20),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/home');
+                    Navigator.pushNamed(context, '/');
                   },
                   child: Text(
                     'Skip',
@@ -124,7 +124,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             curve: Curves.easeInOut,
                           );
                         } else {
-                          Navigator.pushNamed(context, '/home');
+                          Navigator.pushNamed(context, '/');
                         }
                       },
                       style: ElevatedButton.styleFrom(

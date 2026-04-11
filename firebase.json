@@ -1,14 +1,28 @@
 {
-  "emulators": {
-    "auth": {
-      "port": 9099
-    },
-    "firestore": {
-      "port": 8080
-    },
-    "ui": {
-      "enabled": true,
-      "port": 4000
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "lingua-neural-kids-app",
+          "appId": "1:454387083035:android:ecba2b9f51b25e028795be",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "lingua-neural-kids-app",
+          "configurations": {
+            "android": "1:454387083035:android:ecba2b9f51b25e028795be",
+            "ios": "1:454387083035:ios:8c91cb8dcb84da258795be",
+            "macos": "1:454387083035:ios:8c91cb8dcb84da258795be",
+            "web": "1:454387083035:web:9324c49cbfaf339b8795be",
+            "windows": "1:454387083035:web:610461ee899ef8c68795be"
+          }
+        }
+      }
     }
   }
 }

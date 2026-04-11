@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "454387083035",
+    "project_id": "lingua-neural-kids-app",
+    "storage_bucket": "lingua-neural-kids-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454387083035:android:ecba2b9f51b25e028795be",
+        "android_client_info": {
+          "package_name": "com.example.lingua_neural_kids_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_sGRyZKYr-olb0zlO6nd_wME7T2v04JA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
