@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "395160022558",
+    "project_id": "linguaneuralkids",
+    "storage_bucket": "linguaneuralkids.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395160022558:android:56e06e88f4f24bd951880f",
+        "android_client_info": {
+          "package_name": "com.linguaneural.studentapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhPq9KNcqZwdThh_dyISBvAyC9e73v2OQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

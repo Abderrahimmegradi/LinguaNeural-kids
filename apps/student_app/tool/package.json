@@ -1,0 +1,8 @@
+{
+  "name": "student-app-tools",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "firebase": "^11.6.1"
+  }
+}

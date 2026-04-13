@@ -1,0 +1,241 @@
+LINGUA NEURAL KIDS APP
+Student App Polish Report
+Date: April 13, 2026
+
+1. CURRENT STATUS
+
+The student app has gone through a substantial polish cycle focused on real-device quality rather than only simulator quality. The work improved the home screen structure, lesson usability, chapter navigation, greeting personalization, account wording, and feedback sound direction. The app now feels more product-oriented and less like a development prototype, but the sound identity still does not match the intended premium emotional tone closely enough.
+
+The most recent functional issue was with the floating chapter arrow on the student home screen. The arrow could point down even when the learner was already inside the current chapter. In that state, pressing the down arrow did not feel correct because the app still considered the chapter "not visible." This happened because the previous logic used a narrow scroll-offset test instead of checking how much of the current chapter was actually visible inside the viewport.
+
+That logic has now been corrected. The app now evaluates actual viewport overlap between the visible scroll region and the current chapter section. This makes the arrow state more reliable. If enough of the current chapter is on screen, the button should switch to the upward state. If the current chapter is not meaningfully visible, the button should remain downward and jump to the current chapter.
+
+2. STUDENT EXPERIENCE IMPROVEMENTS COMPLETED
+
+Greeting and identity:
+- The greeting now tries to show the real student name instead of generic fallback values like User or Student when profile or auth data is available.
+- The first name is extracted when possible to keep the greeting more natural and more child-friendly.
+
+Auth wording cleanup:
+- Sign In was replaced by Log In.
+- Sign Out was replaced by Log Out.
+- This better matches the wording the product is using elsewhere.
+
+Home screen structure:
+- The separate XP, streak, level, and mastery cards were consolidated into one compact top summary bar.
+- The summary bar was moved outside the scroll flow so it remains fixed at the top of the app while the rest of the screen scrolls.
+- This creates a more game-product feel and keeps important progress info always accessible.
+
+Navigation and chapter guidance:
+- A small floating arrow button was added in the bottom-right corner.
+- The button is intended to take the learner directly to the current chapter area.
+- The arrow changes direction when the current chapter is already visible, allowing the learner to quickly go back upward.
+- The latest correction improves the visibility detection so the button state better reflects what is actually on screen.
+
+Lesson layout and overflow fixes:
+- Matching-card exercises were adjusted to use a more adaptive layout.
+- Text truncation, internal spacing, and card proportions were improved to reduce bottom overflow and clipping issues on mobile devices.
+
+Validation:
+- The student app has recently analyzed cleanly.
+- Tests passed in the recent validation cycle.
+- The Android build is launching on the target Xiaomi device even though MIUI occasionally reports misleading install-restriction messages during deployment.
+
+3. CURRENT UI BEHAVIOR OF THE ARROW BUTTON
+
+Expected behavior after the latest fix:
+- If the current chapter is not sufficiently visible on screen, the button shows a downward arrow.
+- Pressing the downward arrow should scroll to the current chapter section.
+- If the learner is already inside the current chapter area, the button should flip upward.
+- Pressing the upward arrow should return toward the top section of the home screen.
+
+Why the issue happened before:
+- The previous logic measured visibility using scroll offsets around the chapter container.
+- That method could mark the current chapter as "not visible" even while part of it was clearly on screen.
+- This produced the wrong button direction and made the button feel broken or inconsistent.
+
+What was changed now:
+- Visibility is now measured using the real overlap between the chapter section and the visible scroll viewport.
+- The app now checks whether enough of the chapter is actually visible to count as being "in" that chapter.
+- The button also re-checks visibility at the moment it is pressed, which reduces stale state problems.
+
+4. SOUND AND VOICE DIRECTION ASSESSMENT
+
+Current situation:
+- Multiple feedback sound packs were generated and tested.
+- The latest direction moved toward soft, short, glassy, bubble-like cues.
+- Even after several iterations, the sounds still do not fully satisfy the desired emotional identity.
+
+That response is valid. The gap is not only technical. It is mostly an art-direction issue.
+
+The desired sound identity is not "generic mobile game" and not "arcade reward pack." The requested identity is more precise:
+- soft
+- playful
+- light
+- slightly bouncy
+- clean
+- short
+- subtle reward feel
+- premium kid-friendly
+- not aggressive
+- not noisy
+- not metallic-sharp
+- not retro arcade
+
+What this means in practice:
+- Correct answer sound should feel like a tiny polished sparkle-pop, not a victory jingle.
+- Wrong answer sound should feel like a soft rounded drop with no harsh attack and no heavy low thud.
+- Reward sound should feel like a miniature uplifting lift, not a casino or arcade combo.
+- Celebration sound should feel brighter and fuller than reward, but still short and elegant.
+- Prompt sound should feel like a light invitation, not a notification beep.
+
+5. RECOMMENDED VOICE AND SOUND TARGETS
+
+Below is the recommended target direction for each cue and spoken style.
+
+Correct answer cue:
+- Character: tiny glass-pop with a warm air layer underneath
+- Emotional effect: instant success, soft confidence, no sharp edge
+- Duration target: 90 ms to 170 ms
+- Pitch profile: quick upward lift with a very short tail
+- Avoid: bright metallic ping, coin sound, arcade level-up snap
+
+Wrong answer cue:
+- Character: soft rounded "hmm" drop translated into sound
+- Emotional effect: gentle correction, no punishment feeling
+- Duration target: 80 ms to 160 ms
+- Pitch profile: small downward movement with muted attack
+- Avoid: buzzer, error alarm, thick low thump, sad cartoon wobble
+
+Reward cue:
+- Character: delicate two-step bloom
+- Emotional effect: progress, momentum, earned mini-reward
+- Duration target: 140 ms to 260 ms
+- Pitch profile: subtle upward hop then brief soft shine
+- Avoid: long fanfare, slot-machine feel, bright layered sparkle storm
+
+Celebration cue:
+- Character: premium micro-chime cluster with soft air
+- Emotional effect: special success without becoming loud
+- Duration target: 220 ms to 420 ms
+- Pitch profile: three to four small rising tones with a restrained tail
+- Avoid: fireworks sound, overlong magical shimmer, toy-like melody
+
+Prompt cue:
+- Character: tiny warm tap with a gentle bright finish
+- Emotional effect: invitation to act, low pressure, focused
+- Duration target: 60 ms to 120 ms
+- Pitch profile: single tap plus small lift
+- Avoid: bell notification, message alert, hard click
+
+Character voice for the companion:
+- Tone: encouraging, calm, lightly smiling, never too excited
+- Energy: medium-low, emotionally warm, always clear
+- Pace: slightly slower than typical app TTS, with short phrases
+- Texture: clean and youthful, but not babyish and not cartoon-chaotic
+- Ideal emotional model: trusted learning companion, not entertainer host
+
+Instruction voice for tasks:
+- Tone: neutral but friendly
+- Energy: focused and clean
+- Pace: medium, slightly slowed on key words
+- Function: reduce fatigue during repeated lesson interactions
+- Avoid: dramatic emphasis, sing-song reading, excessive excitement
+
+Praise voice for success moments:
+- Tone: soft delight, not loud celebration
+- Style examples: "Nice one.", "That was right.", "Good job.", "You got it."
+- Delivery rule: short, non-repetitive, never too frequent
+
+6. WHY THE CURRENT AUDIO STILL FEELS WRONG
+
+Most likely reasons:
+- The synthesized waveforms are still too synthetic and too tone-forward.
+- Harmonics are still making some cues feel more metallic than soft-organic.
+- The envelope shape is improving, but the timbre still sits between UI beep and toy sound instead of premium educational product.
+- The cues are technically short, but some still have a "generated tone" identity rather than a designed sonic texture.
+
+Practical conclusion:
+- If the goal is truly premium sound identity, the next step should not be endless random waveform tweaking.
+- The better path is to define a reference palette and either design more natural layered cues or import carefully curated original assets that match the target brief.
+
+7. NEXT ENHANCEMENT STEPS
+
+Priority 1: Finish student home flow polish
+- Verify the fixed top bar and floating arrow behavior on the real Xiaomi device in multiple scroll positions.
+- Refine the current chapter detection further if any borderline false states still appear.
+- Add a subtle label or tooltip behavior only if needed for clarity.
+
+Priority 2: Redesign the full sound identity intentionally
+- Build one controlled sound system with a single shared audio style guide.
+- Separate cues into three categories: neutral UI, learning feedback, celebration moments.
+- Stop replacing cues blindly and instead evaluate against a written target description for each sound.
+- Prefer layered soft-organic textures over pure tones.
+
+Priority 3: Improve character voice direction
+- Reduce repetition further in companion speech.
+- Create explicit voice modes: greeting voice, instruction voice, praise voice, recovery voice.
+- Keep lesson prompts more neutral than encouragement lines.
+- Use very short positive phrases for correctness feedback.
+
+Priority 4: Student-first lesson polish
+- Review lesson transitions between question types.
+- Add more polished state changes when moving from one exercise to the next.
+- Improve the sense of continuity so the lesson feels guided rather than screen-by-screen.
+
+Priority 5: Motion and delight polish
+- Refine micro-animations for correct answer, reward, and chapter progression.
+- Ensure the motion language matches the softer premium direction and not an arcade aesthetic.
+- Keep animations fast and satisfying, not flashy.
+
+Priority 6: Visual consistency sweep
+- Re-check spacing, text scale handling, and overflow risk across student home and lesson screens.
+- Standardize card corner weight, border softness, and elevation across major student screens.
+- Polish color balance so the app feels more intentional and premium.
+
+8. RECOMMENDED AUDIO PROTOTYPE DIRECTIONS FOR THE NEXT PASS
+
+Prototype A: Soft Glass Bloom
+- Best for a premium learning feel
+- Main texture: muted glass tap + soft air tail
+- Emotional tone: elegant, clean, calm
+
+Prototype B: Bubble Felt Pop
+- Best for playful child-friendly interaction without noise
+- Main texture: rounded pop + soft felt tap
+- Emotional tone: friendly, light, warm
+
+Prototype C: Paper Tap Chime
+- Best for subtle educational focus
+- Main texture: paper-like tap + tiny bright finish
+- Emotional tone: quiet, smart, refined
+
+If continuing audio polish, these prototypes should be tested as full families, not as isolated sounds.
+
+9. FINAL ASSESSMENT
+
+The student app is much closer to a polished product now in structure and usability. The home screen is stronger, the chapter guidance is more intentional, the lesson layout is more reliable, and the app is deployable on the target device. The main remaining gap is not basic functionality. The remaining gap is product feel: especially the emotional quality of sound, voice, and motion.
+
+The next stage should focus on deliberate student experience polish rather than more structural rewrites. The strongest return now will come from tightening the sound identity, companion voice behavior, lesson transitions, and visual consistency until the app feels cohesive and premium.
+
+10. FULL APPLICATION CONTEXT
+
+This product is larger than a single Flutter screen and larger than a single app. It is a multi-app educational platform with a shared product vision. The workspace includes a student app, teacher app, school app, and admin app, alongside shared packages and backend-oriented support code. The student app is currently the most actively polished surface because it is the core learner-facing experience and because improvements there will influence the design quality of the rest of the platform.
+
+At a product level, the application is positioned as an adaptive language-learning ecosystem for children. The educational direction is not only static lesson delivery. The target is a richer experience driven by personalization, voice interaction, encouragement, progress tracking, and eventually deeper adaptive behavior based on signals such as learner voice and emotional state. This means the application is not just a content viewer. It is intended to become a guided learning environment with a character companion, progress systems, classroom visibility, and administrative structure.
+
+The student app currently acts as the emotional and interactive center of the product. It contains the lesson map, personalized greeting, lesson continuation flow, chapter progression, progress metrics, companion character presence, and real-time feedback moments. These parts are important because they shape the child’s perception of the whole product. If the student app feels polished, calm, clear, and rewarding, the entire platform feels stronger. If it feels noisy, inconsistent, or awkward, the rest of the ecosystem feels weaker even if the backend and dashboards are technically functional.
+
+Architecturally, the app is already moving in a good direction. It uses organized Flutter modules, provider-based state handling, structured services, and shared design constants. There is clear separation between UI, models, providers, and service layers. Firebase is already part of the stack, and it supports identity, lesson data, and progress persistence. That is a strong base for further refinement because it means product polish can happen on top of a reasonably structured foundation instead of on top of unmanaged prototype code.
+
+The home screen is now functioning as a compact command center for the learner. It shows identity, character presence, progress, and direct lesson continuation. The top metrics bar makes the most important game-learning signals visible without overwhelming the learner. The learning map organizes lessons by chapter, which is clearer than a flat list and better aligned with progression-based education products. The floating navigation arrow is part of this guidance layer. Its purpose is small but important: reduce friction between greeting content and actionable progress. That is why it needed to be fixed carefully.
+
+The lesson experience is also central to product quality. The student app includes structured exercises and already contains logic for lesson progress, current lesson state, and different exercise types. The recent overflow fixes in the matching exercise show that the app is transitioning from “works in principle” to “works on real devices under realistic constraints.” That step matters. A children’s learning app must feel resilient on phones with different sizes, densities, and rendering conditions. Visual breakage immediately reduces trust.
+
+Audio and voice are now the clearest remaining weakness relative to the product ambition. The app already uses local feedback cues and TTS-based spoken guidance, which is a solid functional base. But the emotional identity of those sounds and voices still does not fully match the intended premium experience. This is not a minor cosmetic issue. In a child-facing learning product, sound and voice strongly shape perceived quality, comfort, motivation, and fatigue. The app should eventually sound calm, intelligent, warm, and subtly delightful. Right now, it is closer to “functional audio system under active tuning” than “finished sonic identity.”
+
+To move the full application toward a pure and polished version, the next improvements should be guided by system-level consistency rather than isolated fixes. That means one visual language across all four apps, one tone-of-voice system, one interaction philosophy, and one audio identity family. The student app should establish the strongest emotional experience. The teacher app should focus on clarity and insight. The school app should emphasize structure, oversight, and trust. The admin app should emphasize control, safety, and clean operational visibility. All four should still feel like parts of one product family.
+
+The strongest next steps are therefore not random feature additions. They are polish multipliers. First, complete the student-first experience until the home flow, lesson flow, transitions, sound, and motion feel intentional from start to finish. Second, extract those patterns into reusable design and interaction primitives so they can be applied to teacher, school, and admin surfaces. Third, tighten personalization so the app feels observant without becoming noisy. Fourth, evolve the adaptive-learning layer carefully so voice and emotion signals improve pedagogy instead of becoming gimmicks.
+
+If this direction is followed, the application can move from a promising multi-app educational system into a genuinely cohesive product. The codebase already contains the right ingredients: structured Flutter apps, shared packages, Firebase-backed data, role-based surfaces, progress systems, and an identifiable learner journey. The remaining work is refinement, consistency, and emotional quality. That is the difference between an app that functions and an app that feels finished.

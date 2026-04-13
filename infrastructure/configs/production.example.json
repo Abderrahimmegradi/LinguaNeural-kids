@@ -1,0 +1,5 @@
+{
+  "environment": "production",
+  "firebaseEnabled": true,
+  "notes": "Inject real values during secure deployment automation."
+}

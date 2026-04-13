@@ -1,0 +1,5 @@
+{
+  "environment": "development",
+  "firebaseEnabled": false,
+  "notes": "Use this as the local dev baseline until real Firebase options are generated."
+}
